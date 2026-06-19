@@ -1,0 +1,39 @@
+===========================================================================
+  LAGRANGE & CRT-BASED SECURE MULTI-PARTY COMPUTATION SYSTEM DEMO
+        FACULTY OF ELECTRICAL ENGINEERING AND INFORMATICS - ITB
+===========================================================================
+[ PHASE 1: DATA INGESTION & PREPROCESSING ]
+[+] Reading 'student_lifestyle_dataset (1).xlsx' using pandas...
+[+] Successfully loaded top 5 student profiles.
+    - Plaintext Study Vector : [6.9, 5.3, 5.1, 6.5, 8.1]
+    - Plaintext GPA Vector   : [2.99, 2.75, 2.67, 2.88, 3.51]
+    - Scaled Integer Study   : [690, 530, 510, 650, 810]
+    - Scaled Integer GPA     : [299, 275, 267, 288, 351]
+
+[ PHASE 2: DISTRIBUTED CRYPTOGRAPHIC SHARDING ]
+[*] Privacy Status: Cleartext obfuscated. Individual values are now residues.
+    - Node 1 (mod 20021) Study Shares : [330, 440, 200, 360, 600]
+    - Node 1 (mod 20021) GPA Shares   : [19850, 19826, 117, 138, 311]
+
+[ PHASE 3: ISOLATED LOCAL HOMOMORPHIC AGGREGATION ]
+    [-] Server 1 independent accumulator -> Study Mod 20021: 1930 | GPA Mod 20021: 200
+    [-] Server 2 independent accumulator -> Study Mod 20023: 1678 | GPA Mod 20023: 19967
+    [-] Server 3 independent accumulator -> Study Mod 20029: 922 | GPA Mod 20029: 19205
+    [-] Server 4 independent accumulator -> Study Mod 20047: 18701 | GPA Mod 20047: 16919
+    [-] Server 5 independent accumulator -> Study Mod 20051: 18201 | GPA Mod 20051: 16411
+
+[ PHASE 4: GLOBAL CRT DECAPSULATION USING THRESHOLD k=3 ]
+[*] Pooling partial aggregates from Node 1, Node 2, and Node 3...
+
+===========================================================================
+                       FINAL COMPUTATIONAL REPORT                       
+===========================================================================
+  METRIC INDICATOR      │   DECENTRALIZED CRT   │   PLAINTEXT BASELINE 
+---------------------------------------------------------------------------
+  Study Hours Total     │   3190                │   3190              
+  Study Hours Mean      │   6.38                │   6.38              
+  GPA Cumulative Total  │   1480                │   1480              
+  GPA Cumulative Mean   │   2.96                │   2.96              
+---------------------------------------------------------------------------
+  [ STATUS ] SUCCESS: Privacy-Preserving Integrity Verified (0.00% Error).
+===========================================================================
